@@ -2,9 +2,27 @@ name: Déploiement du site web
 run-name: Déploiement du site web
 on: [push]
 jobs: 
-  conversion-des-fichiers:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - run: ./convert-cp1252-to-utf8.sh
+      - name: Conversion des fichiers
+        run: ./convert-cp1252-to-utf8.sh
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1.0.9
+        with:
+          path: site
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déploiement sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2.0.2
