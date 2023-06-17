@@ -2,19 +2,19 @@ name: Déploiement du site web
 run-name: Déploiement du site web
 on: [push]
 jobs: 
-  build:
+  conversion-des-fichiers:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Récupération des fichiers
         uses: actions/checkout@v3
       - name: Conversion des fichiers
         run: ./convert-cp1252-to-utf8.sh
-      - name: Upload artifact
+      - name: Téléversement des fichiers
         uses: actions/upload-pages-artifact@v1.0.9
         with:
           path: site
   deploy:
-    needs: build
+    needs: conversion-des-fichiers
     permissions:
       pages: write
       id-token: write
