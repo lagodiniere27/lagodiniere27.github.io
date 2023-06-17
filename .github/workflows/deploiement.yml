@@ -1,0 +1,10 @@
+name: GitHub Pages
+run-name: Déploiement du site web
+on: [push]
+jobs: 
+  Conversion-des-Fichiers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - run: ./convert-cp1252-to-utf8.sh
