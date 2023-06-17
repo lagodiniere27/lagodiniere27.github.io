@@ -1,0 +1,10 @@
+pages:
+  stage: deploy
+  image: ubuntu:22.04
+  script:
+    - ./convert-cp1252-to-utf8.sh
+    - mv site public
+  artifacts:
+    paths:
+    - public
+
