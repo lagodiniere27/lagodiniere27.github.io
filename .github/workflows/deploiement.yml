@@ -1,8 +1,8 @@
-name: GitHub Pages
+name: Déploiement du site web
 run-name: Déploiement du site web
 on: [push]
 jobs: 
-  Conversion-des-Fichiers:
+  conversion-des-fichiers:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
