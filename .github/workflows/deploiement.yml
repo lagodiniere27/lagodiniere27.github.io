@@ -13,7 +13,8 @@ jobs:
         uses: actions/upload-pages-artifact@v1.0.9
         with:
           path: site
-  deploy:
+
+  deploiement:
     needs: conversion-des-fichiers
     permissions:
       pages: write
